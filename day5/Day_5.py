@@ -20,7 +20,7 @@ def value(parameter, program, mode):
         return parameter
 
 
-def ops_code(noun = 12, verb =2):
+def ops_code():
     with open('input1.txt') as file:
         input = 1
         output = 0
