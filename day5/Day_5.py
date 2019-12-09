@@ -20,6 +20,10 @@ def value(parameter, program, mode):
         return parameter
 
 
+def calc(operator, value1, value2):
+    return value1 + value2 if operator == 1 else value1 * value2
+
+
 def ops_code():
     with open('input1.txt') as file:
         input = 1
@@ -33,31 +37,16 @@ def ops_code():
             instructions = str(program[index])
             operator, mode1, mode2, mode3 = modes(instructions)
 
-            if operator == 1:
+            if operator == 1 or operator == 2:
                 parameter1 = program[index + 1]
                 parameter2 = program[index + 2]
                 value1 = value(parameter1, program, mode1)
                 value2 = value(parameter2, program, mode2)
 
-                value3 = program[index + 3]
-
                 if mode3 == 0:
-                    program[value3] = value1 + value2
+                    program[program[index + 3]] = calc(operator, value1, value2)
                 else:
-                    program[index + 3] = value1 + value2
-                index += 4
-            elif operator == 2:
-                parameter1 = program[index + 1]
-                parameter2 = program[index + 2]
-
-                value1 = value(parameter1, program, mode1)
-                value2 = value(parameter2, program, mode2)
-
-                value3 = program[index + 3]
-                if mode3 == 0:
-                    program[program[index + 3]] = value1 * value2
-                else:
-                    program[index + 3] = value1 * value2
+                    program[index + 3] = calc(operator, value1, value2)
                 index += 4
             elif operator == 3:
                 program[program[index + 1]] = input
