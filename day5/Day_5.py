@@ -28,8 +28,6 @@ def ops_code():
         program = [int(x) for x in data.split(",")]
 
         index = 0
-        program_length = len(program)
-        print(f"What is the program length: {program_length}")
 
         while program[index] != 99:
             instructions = str(program[index])
